@@ -14,7 +14,7 @@ function preload() {
   // color data is defined in a per vertex basis with the fill command below.
   // Have a look at the generated vertex shader in the console!
   // readShader: https://github.com/VisualComputing/p5.treegl#handling
-  colorShader = readShader('/sketches/shaders/color.frag', { matrices: Tree.NONE, varyings: Tree.color4 });
+  colorShader = readShader('./sketches/shaders/color.frag', { matrices: Tree.NONE, varyings: Tree.color4 });
 }
 
 function setup() {
