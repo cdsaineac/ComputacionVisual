@@ -12,9 +12,29 @@ float luma(vec3 texel) {
   return 0.299 * texel.r + 0.587 * texel.g + 0.114 * texel.b;
 }
 
+// returns HSV of given texel
+float HSV(vec3 texel) {
+  float Cmax = max(texel.r,texel.g,texel.b) 
+  float Cmin = min(texel.r,texel.g,texel.b) 
+  float delta = Cmax - Cmin
+  float H = 0.0
+  
+  if(delta != 0){
+    switch(Cmax){
+      case(Cmax == texel.r){
+        60 * (mod((texel.g - texel.b)/delta,6))
+      } 
+    }
+  }
+  V = Cmax
+  vec3 HSV = [H,S,V]
+  return HSV;
+}
+
 void main() {
   // texture2D(texture, texcoords2) samples texture at texcoords2 
   // and returns the normalized texel color
   vec4 texel = texture2D(texture, texcoords2);
-  gl_FragColor = grey_scale ? vec4((vec3(luma(texel.rgb))), 1.0) : texel;
+  //gl_FragColor = grey_scale ? vec4((vec3(luma(texel.rgb))), 1.0) : texel;
+  gl_FragColor = grey_scale ? vec4(HSV(texel.rgb), 1.0) : texel;
 }
